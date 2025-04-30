@@ -1,12 +1,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppBookPJ.Pages.EditBookPage"
-             Title="Редактировать книгу">
+             Title="Редактировать товар">
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
 
-            <Entry x:Name="titleEntry" Placeholder="Название книги" />
+            <Entry x:Name="titleEntry" Placeholder="Название PC" />
             <Entry x:Name="authorEntry" Placeholder="Автор" />
             <Picker x:Name="genrePicker" Title="Жанр" />
 

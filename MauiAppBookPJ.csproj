@@ -57,7 +57,26 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\0kzSnJwT2CWNqC5snxI3v8NchkYsrzT9zf7MHSuREqu_qudLtufOa22aNcDqWIZqeZZflVHkFa.jpg" />
+	  <MauiImage Remove="Resources\Images\6eZGpzfO8QhjE9Gu2zpMWsX_r_F720252rwkJ_1Jcpf1AuTrzXXqtiAMJjWw31P.jpg" />
+	  <MauiImage Remove="Resources\Images\XXX.jpg" />
+	  <MauiImage Remove="Resources\Images\zenitsu.jpg" />
+	  <MauiImage Remove="Resources\Images\_PalVGZdhNXtPIZ5KIwFui4M2D0D_3LaC9slU84u9nslGWlumE0V3_ceEpqj6Qy.jpg" />
+	  <MauiImage Remove="Resources\Images\бека.jfif" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\0kzSnJwT2CWNqC5snxI3v8NchkYsrzT9zf7MHSuREqu_qudLtufOa22aNcDqWIZqeZZflVHkFa.jpg" />
+	  <None Remove="Resources\Images\6eZGpzfO8QhjE9Gu2zpMWsX_r_F720252rwkJ_1Jcpf1AuTrzXXqtiAMJjWw31P.jpg" />
+	  <None Remove="Resources\Images\XXX.jpg" />
+	  <None Remove="Resources\Images\zenitsu.jpg" />
+	  <None Remove="Resources\Images\_PalVGZdhNXtPIZ5KIwFui4M2D0D_3LaC9slU84u9nslGWlumE0V3_ceEpqj6Qy.jpg" />
+	  <None Remove="Resources\Images\бека.jfif" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.2" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />

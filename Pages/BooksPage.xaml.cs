@@ -15,7 +15,7 @@ public partial class BooksPage : ContentPage
 
     private readonly List<string> _genres = new()
     {
-        "Все жанры", "Драма", "Приключения", "Фантастика", "Детектив", "Комедия", "Ужасы"
+        "Все PC", "Gaming", "Office", "Home"
     };
 
     public BooksPage()

@@ -18,7 +18,7 @@ public partial class AppShell : Shell
         {
             Items.Add(new FlyoutItem
             {
-                Title = "📚 Каталог",
+                Title = "Каталог",
                 Route = "books",
                 Items =
                 {
