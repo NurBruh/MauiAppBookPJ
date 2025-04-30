@@ -2,11 +2,65 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppBookPJ.Pages.EditComputerPage"
-             Title="EditComputerPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Редактирование ПК">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Entry x:Name="modelEntry"
+                   Placeholder="Модель" />
+
+            <Entry x:Name="cpuEntry"
+                   Placeholder="Процессор (CPU)" />
+
+            <Entry x:Name="gpuEntry"
+                   Placeholder="Видеокарта (GPU)" />
+
+            <Entry x:Name="ramEntry"
+                   Placeholder="Оперативная память (RAM)" />
+
+            <Entry x:Name="storageEntry"
+                   Placeholder="Накопитель (SSD/HDD)" />
+
+            <Entry x:Name="priceEntry"
+                   Placeholder="Цена"
+                   Keyboard="Numeric" />
+
+            <Label Text="Изображение" FontAttributes="Bold" />
+            <Image x:Name="imagePreview"
+                   HeightRequest="150"
+                   Aspect="AspectFit"
+                   IsVisible="False" />
+
+            <!-- Пример выбора изображения, можно заменить на Grid выбора -->
+            <HorizontalStackLayout Spacing="10">
+                <Image Source="pc1.png" HeightRequest="60">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="pc1.png" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Source="pc2.png" HeightRequest="60">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="pc2.png" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Source="pc3.png" HeightRequest="60">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="pc3.png" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </HorizontalStackLayout>
+
+            <Button Text="💾 Сохранить"
+                    Clicked="OnSaveClicked"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White" />
+
+            <Button Text="🗑 Удалить"
+                    Clicked="OnDeleteClicked"
+                    BackgroundColor="#F44336"
+                    TextColor="White" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
