@@ -1,0 +1,27 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppBookPJ.Pages.LoginPage"
+             Title="Вход">
+
+    <VerticalStackLayout Padding="30" Spacing="20"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center">
+
+        <Label Text="Добро пожаловать!" FontSize="26" FontAttributes="Bold" HorizontalOptions="Center" />
+
+        <Entry x:Name="usernameEntry" Placeholder="Имя пользователя" />
+        <Entry x:Name="passwordEntry" Placeholder="Пароль" IsPassword="True" />
+
+        <Button Text="Войти"
+                x:Name="loginButton"
+                Clicked="OnLoginClicked"
+                BackgroundColor="#2196F3"
+                TextColor="White" />
+
+        <Button Text="Регистрация"
+                x:Name="registerButton"
+                Clicked="OnRegisterClicked"
+                BackgroundColor="#757575"
+                TextColor="White" />
+    </VerticalStackLayout>
+</ContentPage>

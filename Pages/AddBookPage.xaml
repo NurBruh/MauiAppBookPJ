@@ -1,0 +1,64 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppBookPJ.Pages.AddBookPage"
+             Title="Добавить книгу">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Entry x:Name="titleEntry" Placeholder="Название книги" />
+            <Entry x:Name="authorEntry" Placeholder="Автор" />
+
+            <Picker x:Name="genrePicker" Title="Жанр">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Драма</x:String>
+                        <x:String>Приключения</x:String>
+                        <x:String>Фантастика</x:String>
+                        <x:String>Детектив</x:String>
+                        <x:String>Роман</x:String>
+                        <x:String>Фэнтези</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Editor x:Name="descriptionEditor" Placeholder="Описание книги" AutoSize="TextChanges" />
+
+            <Label Text="Выберите обложку:" FontAttributes="Bold" />
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                <Image Source="imagecart1.jpg" HeightRequest="80">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCoverTapped" CommandParameter="imagecart1.jpg" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Source="imagecart2.jpg" HeightRequest="80">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCoverTapped" CommandParameter="imagecart2.jpg" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Source="imagecart3.jpg" HeightRequest="80">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCoverTapped" CommandParameter="imagecart3.jpg" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Source="imagecart4.jpg"  HeightRequest="80">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCoverTapped" CommandParameter="imagecart4.jpg" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Source="imagecart5.jpg" HeightRequest="80">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCoverTapped" CommandParameter="imagecart5.jpg" />
+                    </Image.GestureRecognizers>
+                </Image>
+                
+            </HorizontalStackLayout>
+
+            <Image x:Name="coverPreview" HeightRequest="150" Aspect="AspectFit" IsVisible="False" />
+
+            <Button Text="Сохранить книгу"
+                    Clicked="OnSaveClicked"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

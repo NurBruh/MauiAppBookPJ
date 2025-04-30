@@ -1,0 +1,26 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppBookPJ.Pages.RegisterPage"
+             Title="Регистрация">
+
+    <VerticalStackLayout Padding="30" Spacing="20"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center">
+
+        <Label Text="Регистрация" FontSize="26" FontAttributes="Bold" HorizontalOptions="Center" />
+
+        <Entry x:Name="usernameEntry" Placeholder="Имя пользователя" />
+        <Entry x:Name="passwordEntry" Placeholder="Пароль" IsPassword="True" />
+        <Entry x:Name="confirmEntry" Placeholder="Подтвердите пароль" IsPassword="True" />
+
+        <Button Text="Зарегистрироваться"
+                Clicked="OnRegisterClicked"
+                BackgroundColor="#4CAF50"
+                TextColor="White" />
+
+        <Button Text="Назад"
+                Clicked="OnBackClicked"
+                BackgroundColor="#757575"
+                TextColor="White" />
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,37 @@
+﻿<Shell
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:MauiAppBookPJ.Pages"
+    
+    x:Class="MauiAppBookPJ.AppShell">
+    <Shell.FlyoutHeader>
+        <VerticalStackLayout Padding="10" Spacing="10">
+            <Label Text="📚 BookStore" FontSize="24" FontAttributes="Bold" />
+
+           
+            <HorizontalStackLayout HorizontalOptions="Start" Spacing="15">
+                <Image Source="instagram.png" HeightRequest="24">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnInstagramTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <Image Source="whatsapp.png" HeightRequest="24">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnWhatsAppTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <Image Source="tiktok.png" HeightRequest="24">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTikTokTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </Shell.FlyoutHeader>
+
+
+
+
+</Shell>
