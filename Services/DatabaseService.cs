@@ -1,101 +1,165 @@
 ﻿using SQLite;
 using MauiAppBookPJ.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace MauiAppBookPJ.Services;
-
-public class DatabaseService
+namespace MauiAppBookPJ.Services
 {
-    private SQLiteAsyncConnection _db;
-    private readonly string _dbPath;
-
-    public DatabaseService(string dbPath)
+    public class DatabaseService
     {
-        _dbPath = dbPath;
-    }
+        private SQLiteAsyncConnection _db;
+        private readonly string _dbPath;
 
-    public async Task InitAsync()
-    {
-        if (_db != null)
-            return;
+        public DatabaseService(string dbPath)
+        {
+            _dbPath = dbPath;
+        }
 
-        _db = new SQLiteAsyncConnection(_dbPath);
-        await _db.CreateTableAsync<User>();
-        await _db.CreateTableAsync<Book>();
-        await _db.CreateTableAsync<Review>();
-        await _db.CreateTableAsync<OrderHistory>();
-    }
+        // Инициализация базы данных
+        public async Task InitAsync()
+        {
+            if (_db != null)
+                return;
 
-    public async Task<List<User>> GetAllUsersAsync()
-    {
-        await InitAsync();
-        return await _db.Table<User>().ToListAsync();
-    }
+            _db = new SQLiteAsyncConnection(_dbPath);
+            await _db.CreateTableAsync<User>();
+            await _db.CreateTableAsync<Book>();
+            await _db.CreateTableAsync<Computer>();
+            await _db.CreateTableAsync<Review>();
+            await _db.CreateTableAsync<OrderHistory>();
+        }
 
-    public async Task<User> GetUserByCredentialsAsync(string username, string password)
-    {
-        await InitAsync();
-        return await _db.Table<User>().FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
-    }
+        // --- Users ---
+        public async Task<List<User>> GetAllUsersAsync()
+        {
+            await InitAsync();
+            return await _db.Table<User>().ToListAsync();
+        }
 
-    public async Task AddUserAsync(User user)
-    {
-        await InitAsync();
-        await _db.InsertAsync(user);
-    }
+        public async Task<User> GetUserByCredentialsAsync(string username, string password)
+        {
+            await InitAsync();
+            return await _db.Table<User>().FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
+        }
 
-    public async Task<List<Book>> GetBooksAsync()
-    {
-        await InitAsync();
-        return await _db.Table<Book>().ToListAsync();
-    }
+        public async Task AddUserAsync(User user)
+        {
+            await InitAsync();
+            await _db.InsertAsync(user);
+        }
 
-    public async Task AddBookAsync(Book book)
-    {
-        await InitAsync();
-        await _db.InsertAsync(book);
-    }
+        // --- Books ---
+        public async Task<List<Book>> GetBooksAsync()
+        {
+            await InitAsync();
+            return await _db.Table<Book>().ToListAsync();
+        }
 
-    public async Task UpdateBookAsync(Book book)
-    {
-        await InitAsync();
-        await _db.UpdateAsync(book);
-    }
+        public async Task AddBookAsync(Book book)
+        {
+            await InitAsync();
+            await _db.InsertAsync(book);
+        }
 
-    public async Task DeleteBookAsync(Book book)
-    {
-        await InitAsync();
-        await _db.DeleteAsync(book);
-    }
+        public async Task UpdateBookAsync(Book book)
+        {
+            await InitAsync();
+            await _db.UpdateAsync(book);
+        }
 
-  
-    public async Task AddReviewAsync(Review review)
-    {
-        await InitAsync();
-        await _db.InsertAsync(review);
-    }
+        public async Task DeleteBookAsync(Book book)
+        {
+            await InitAsync();
+            await _db.DeleteAsync(book);
+        }
 
-    public async Task<List<Review>> GetReviewsByBookIdAsync(int bookId)
-    {
-        await InitAsync();
-        return await _db.Table<Review>()
-            .Where(r => r.BookId == bookId)
-            .OrderByDescending(r => r.CreatedAt)
-            .ToListAsync();
-    }
+        // --- Reviews ---
+        public async Task AddReviewAsync(Review review)
+        {
+            await InitAsync();
+            if (review != null)
+                await _db.InsertAsync(review);
+        }
 
-   
-    public async Task AddOrderHistoryAsync(OrderHistory order)
-    {
-        await InitAsync();
-        await _db.InsertAsync(order);
-    }
+        public async Task<List<Review>> GetReviewsByComputerIdAsync(int computerId)
+        {
+            await InitAsync();
+            return await _db.Table<Review>()
+                .Where(r => r.ComputerId == computerId)
+                .OrderByDescending(r => r.CreatedAt)
+                .ToListAsync();
+        }
 
-    public async Task<List<OrderHistory>> GetOrderHistoryByUserAsync(int userId)
-    {
-        await InitAsync();
-        return await _db.Table<OrderHistory>()
-            .Where(o => o.UserId == userId)
-            .OrderByDescending(o => o.CreatedAt)
-            .ToListAsync();
+        // --- Order History ---
+        public async Task AddOrderHistoryAsync(OrderHistory order)
+        {
+            await InitAsync();
+            await _db.InsertAsync(order);
+        }
+
+        public async Task<List<OrderHistory>> GetOrderHistoryByUserAsync(int userId)
+        {
+            await InitAsync();
+            return await _db.Table<OrderHistory>()
+                .Where(o => o.UserId == userId)
+                .OrderByDescending(o => o.CreatedAt)
+                .ToListAsync();
+        }
+
+        // --- Computers ---
+        public async Task<List<Computer>> GetComputersAsync()
+        {
+            await InitAsync();
+            return await _db.Table<Computer>().ToListAsync();
+        }
+
+        public async Task<List<Computer>> GetComputersInCartAsync()
+        {
+            await InitAsync();
+            return await _db.Table<Computer>().Where(c => c.InCart).ToListAsync();
+        }
+
+        public async Task AddComputerAsync(Computer computer)
+        {
+            await InitAsync();
+            await _db.InsertAsync(computer);
+        }
+
+        public async Task UpdateComputerAsync(Computer computer)
+        {
+            await InitAsync();
+            await _db.UpdateAsync(computer);
+        }
+
+        public async Task DeleteComputerAsync(Computer computer)
+        {
+            await InitAsync();
+            await _db.DeleteAsync(computer);
+        }
+
+        public async Task AddToCartAsync(Computer computer)
+        {
+            await InitAsync();
+            computer.InCart = true;
+            await _db.UpdateAsync(computer);
+        }
+
+        public async Task RemoveFromCartAsync(Computer computer)
+        {
+            await InitAsync();
+            computer.InCart = false;
+            await _db.UpdateAsync(computer);
+        }
+
+        public async Task CheckoutAsync()
+        {
+            await InitAsync();
+            var cartItems = await GetComputersInCartAsync();
+            foreach (var item in cartItems)
+            {
+                item.InCart = false;
+                await _db.UpdateAsync(item);
+            }
+        }
     }
 }

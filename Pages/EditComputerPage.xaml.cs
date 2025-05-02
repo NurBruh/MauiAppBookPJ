@@ -1,4 +1,4 @@
-using MauiAppBookPJ.Models;
+п»їusing MauiAppBookPJ.Models;
 
 namespace MauiAppBookPJ.Pages;
 
@@ -16,14 +16,17 @@ public partial class EditComputerPage : ContentPage
 
     private void FillFields()
     {
+        nameEntry.Text = _computer.Name;
+        typeEntry.Text = _computer.Type;
+        descriptionEntry.Text = _computer.Description;
         modelEntry.Text = _computer.Model;
         cpuEntry.Text = _computer.CPU;
         gpuEntry.Text = _computer.GPU;
         ramEntry.Text = _computer.RAM;
         storageEntry.Text = _computer.Storage;
         priceEntry.Text = _computer.Price.ToString("F2");
-        selectedImage = _computer.ImagePath;
 
+        selectedImage = _computer.ImagePath;
         imagePreview.Source = selectedImage;
         imagePreview.IsVisible = true;
     }
@@ -40,7 +43,10 @@ public partial class EditComputerPage : ContentPage
 
     private async void OnSaveClicked(object sender, EventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(modelEntry.Text) ||
+        if (string.IsNullOrWhiteSpace(nameEntry.Text) ||
+            string.IsNullOrWhiteSpace(typeEntry.Text) ||
+            string.IsNullOrWhiteSpace(descriptionEntry.Text) ||
+            string.IsNullOrWhiteSpace(modelEntry.Text) ||
             string.IsNullOrWhiteSpace(cpuEntry.Text) ||
             string.IsNullOrWhiteSpace(gpuEntry.Text) ||
             string.IsNullOrWhiteSpace(ramEntry.Text) ||
@@ -48,10 +54,13 @@ public partial class EditComputerPage : ContentPage
             !decimal.TryParse(priceEntry.Text, out var price) ||
             string.IsNullOrEmpty(selectedImage))
         {
-            await DisplayAlert("Ошибка", "Заполните все поля и выберите изображение.", "OK");
+            await DisplayAlert("РћС€РёР±РєР°", "Р—Р°РїРѕР»РЅРёС‚Рµ РІСЃРµ РїРѕР»СЏ Рё РІС‹Р±РµСЂРёС‚Рµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ.", "OK");
             return;
         }
 
+        _computer.Name = nameEntry.Text;
+        _computer.Type = typeEntry.Text;
+        _computer.Description = descriptionEntry.Text;
         _computer.Model = modelEntry.Text;
         _computer.CPU = cpuEntry.Text;
         _computer.GPU = gpuEntry.Text;
@@ -61,13 +70,13 @@ public partial class EditComputerPage : ContentPage
         _computer.ImagePath = selectedImage;
 
         await App.DbService.UpdateComputerAsync(_computer);
-        await DisplayAlert("Успешно", "Информация обновлена", "OK");
+        await DisplayAlert("РЈСЃРїРµС€РЅРѕ", "РРЅС„РѕСЂРјР°С†РёСЏ РѕР±РЅРѕРІР»РµРЅР°", "OK");
         await Navigation.PopAsync();
     }
 
     private async void OnDeleteClicked(object sender, EventArgs e)
     {
-        var answer = await DisplayAlert("Удалить", "Вы уверены, что хотите удалить ПК?", "Да", "Нет");
+        var answer = await DisplayAlert("РЈРґР°Р»РёС‚СЊ", "Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ РџРљ?", "Р”Р°", "РќРµС‚");
         if (answer)
         {
             await App.DbService.DeleteComputerAsync(_computer);

@@ -14,6 +14,16 @@
                         <TapGestureRecognizer Tapped="OnInstagramTapped" />
                     </Image.GestureRecognizers>
                 </Image>
+                <Image Source="whatsapp.png" HeightRequest="24">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnWhatsAppTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Source="tiktok.png" HeightRequest="24">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTikTokTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </Shell.FlyoutHeader>

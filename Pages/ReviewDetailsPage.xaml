@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    x:Class="MauiAppBookPJ.Pages.ReviewDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <StackLayout Padding="20">
+        <Label Text="Автор отзыва:" FontAttributes="Bold"/>
+        <Label Text="{Binding Username}" FontSize="16"/>
+
+        <Label Text="Текст отзыва:" FontAttributes="Bold" Margin="0,10,0,0"/>
+        <Label Text="{Binding Text}" FontSize="16"/>
+    </StackLayout>
+</ContentPage>

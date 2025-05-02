@@ -18,12 +18,17 @@ public partial class CartPage : ContentPage
     {
         base.OnAppearing();
 
-        var books = await App.DbService.GetBooksAsync();
-        var userCart = books
-            .Where(b => b.InCart && b.UserId == App.CurrentUser?.Id)
-            .ToList();
+        // Получаем товары из корзины
+        var computersInCart = CartService.CartItems;
 
-        cartCollection.ItemsSource = userCart;
+        // Привязываем данные к CollectionView или ListView
+        cartCollection.ItemsSource = computersInCart;
+
+        // Если корзина пуста, отображаем сообщение
+        if (computersInCart.Count == 0)
+        {
+            await DisplayAlert("Корзина пуста", "Ваша корзина пустая. Добавьте товары в корзину.", "ОК");
+        }
     }
 
     private void OnCheckoutClicked(object sender, EventArgs e)
@@ -33,9 +38,9 @@ public partial class CartPage : ContentPage
 
     private async void OnDownloadPdfClicked(object sender, EventArgs e)
     {
-        var books = cartCollection.ItemsSource.Cast<Book>().ToList();
+        var computers = cartCollection.ItemsSource.Cast<Computer>().ToList();
 
-        if (books.Count == 0)
+        if (computers.Count == 0)
         {
             await DisplayAlert("Внимание", "Корзина пуста.", "ОК");
             return;
@@ -50,13 +55,15 @@ public partial class CartPage : ContentPage
         var logoPath = Path.Combine(FileSystem.Current.AppDataDirectory, "logo.png");
         if (File.Exists(logoPath))
         {
-            using FileStream imageStream = new FileStream(logoPath, FileMode.Open, FileAccess.Read);
-            PdfBitmap logo = new PdfBitmap(imageStream);
-            graphics.DrawImage(logo, new RectangleF(0, y, 80, 80));
-            y += 90;
+            using (FileStream imageStream = new FileStream(logoPath, FileMode.Open, FileAccess.Read))
+            {
+                PdfBitmap logo = new PdfBitmap(imageStream);
+                graphics.DrawImage(logo, new RectangleF(0, y, 80, 80));
+                y += 90;
+            }
         }
 
-        graphics.DrawString("📚 BookStore - Чек заказа",
+        graphics.DrawString("🖥 ComputerStore - Чек заказа",
             new PdfStandardFont(PdfFontFamily.Helvetica, 18, PdfFontStyle.Bold),
             PdfBrushes.DarkBlue,
             new Syncfusion.Drawing.PointF(0, y));
@@ -74,9 +81,9 @@ public partial class CartPage : ContentPage
             new Syncfusion.Drawing.PointF(0, y));
         y += 30;
 
-        foreach (var book in books)
+        foreach (var computer in computers)
         {
-            graphics.DrawString("📖 " + book.Title + " — " + book.Author,
+            graphics.DrawString($"💻 {computer.Name} — {computer.Specifications}",
                 new PdfStandardFont(PdfFontFamily.Helvetica, 12),
                 PdfBrushes.Black,
                 new Syncfusion.Drawing.PointF(0, y));
@@ -100,25 +107,29 @@ public partial class CartPage : ContentPage
         var order = new OrderHistory
         {
             UserId = App.CurrentUser.Id,
-            BookTitles = string.Join("; ", books.Select(b => b.Title)),
+            BookTitles = string.Join("; ", computers.Select(c => c.Name)),
             PdfPath = filePath,
             CreatedAt = DateTime.Now
         };
 
-        await App.DbService.AddOrderHistoryAsync(order);
+        await Task.WhenAll(
+            App.DbService.AddOrderHistoryAsync(order), // Добавляем запись в историю заказов
+            Task.WhenAll(computers.Select(c =>
+            {
+                c.InCart = false; // Обновляем статус товаров
+                return App.DbService.UpdateComputerAsync(c);
+            }))
+        );
 
-        foreach (var book in books)
-        {
-            book.InCart = false;
-            await App.DbService.UpdateBookAsync(book);
-        }
+        CartService.CartItems.Clear(); // Очищаем корзину в CartService
 
-        cartCollection.ItemsSource = new List<Book>();
+        // Обновляем представление корзины
+        cartCollection.ItemsSource = null;
 
+        // Открытие файла PDF
         await Launcher.Default.OpenAsync(new OpenFileRequest
         {
             File = new ReadOnlyFile(filePath)
         });
     }
-
 }

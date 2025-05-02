@@ -1,0 +1,137 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppBookPJ.Pages.ComputerDetailsPage"
+             Title="Детали компьютера"
+             BackgroundColor="#F3F4F6">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="25">
+
+            <!-- Название компьютера -->
+            <Label Text="{Binding Name}"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   TextColor="#1D1D1F"
+                   HorizontalOptions="Center"/>
+
+            <!-- Информация о компьютере -->
+            <VerticalStackLayout Spacing="15">
+                <!-- Один блок -->
+                <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" Padding="15" CornerRadius="15">
+                    <VerticalStackLayout>
+                        <Label Text="Тип:" FontSize="18" TextColor="#3B3B3B"/>
+                        <Label Text="{Binding Type}" FontSize="20" TextColor="#1D1D1F" FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" Padding="15" CornerRadius="15">
+                    <VerticalStackLayout>
+                        <Label Text="Модель:" FontSize="18" TextColor="#3B3B3B"/>
+                        <Label Text="{Binding Model}" FontSize="20" TextColor="#1D1D1F" FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" Padding="15" CornerRadius="15">
+                    <VerticalStackLayout>
+                        <Label Text="Описание:" FontSize="18" TextColor="#3B3B3B"/>
+                        <Label Text="{Binding Description}" FontSize="20" TextColor="#1D1D1F" FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" Padding="15" CornerRadius="15">
+                    <VerticalStackLayout>
+                        <Label Text="Процессор:" FontSize="18" TextColor="#3B3B3B"/>
+                        <Label Text="{Binding CPU}" FontSize="20" TextColor="#1D1D1F" FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" Padding="15" CornerRadius="15">
+                    <VerticalStackLayout>
+                        <Label Text="Графика:" FontSize="18" TextColor="#3B3B3B"/>
+                        <Label Text="{Binding GPU}" FontSize="20" TextColor="#1D1D1F" FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+
+            <!-- Кнопка заказа -->
+            <Button Text="Оформить заказ"
+                    BackgroundColor="#FF5722"
+                    TextColor="White"
+                    CornerRadius="25"
+                    Padding="15,10"
+                    FontSize="18"
+                    WidthRequest="200"
+                    HorizontalOptions="Center"
+                    Clicked="OnOrderComputerClicked"/>
+
+            <!-- Заголовок отзывов -->
+            <Label Text="Отзывы"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="#1D1D1F"
+                   HorizontalOptions="Center"/>
+
+            <!-- Список отзывов -->
+            <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" Padding="15" CornerRadius="15">
+                <ListView x:Name="ReviewsList"
+                          BackgroundColor="#F9FAFB"
+                          SeparatorColor="#E5E7EB"
+                          ItemTapped="OnReviewTapped"
+                          HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame BackgroundColor="#F3F4F6" Padding="10" CornerRadius="10">
+                                    <VerticalStackLayout>
+                                        <Label Text="{Binding Username}" 
+                                               FontSize="18" 
+                                               FontAttributes="Bold"
+                                               TextColor="#1D1D1F"/>
+                                        <Label Text="{Binding Text}" 
+                                               FontSize="16" 
+                                               TextColor="#5B5B5B"/>
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Frame>
+
+            <!-- Добавление отзыва -->
+            <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" Padding="15" CornerRadius="15">
+                <VerticalStackLayout Spacing="10">
+
+                    <!-- Имя автора -->
+                    <Frame BackgroundColor="#F9FAFB" Padding="10" CornerRadius="10">
+                        <Entry x:Name="ReviewAuthorEntry"
+                               Placeholder="Ваше имя"
+                               FontSize="18"
+                               TextColor="#1D1D1F"
+                               BackgroundColor="#F9FAFB"/>
+                    </Frame>
+
+                    <!-- Текст отзыва -->
+                    <Frame BackgroundColor="#F9FAFB" Padding="10" CornerRadius="10">
+                        <Editor x:Name="ReviewContentEditor"
+                                Placeholder="Ваш отзыв"
+                                FontSize="18"
+                                TextColor="#1D1D1F"
+                                HeightRequest="100"
+                                BackgroundColor="#F9FAFB"/>
+                    </Frame>
+
+                    <!-- Кнопка добавления отзыва -->
+                    <Button Text="Добавить отзыв"
+                            BackgroundColor="#6200EE"
+                            TextColor="White"
+                            CornerRadius="25"
+                            Padding="10,5"
+                            FontSize="18"
+                            Clicked="OnAddReviewClicked"
+                            HorizontalOptions="FillAndExpand"/>
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiAppBookPJ.Pages.EditComputerPage"
-             Title="Редактирование ПК">
+             x:Class="MauiAppBookPJ.Pages.AddComputerPage"
+             Title="Добавить компьютер">
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
 
-            <Entry x:Name="nameEntry" Placeholder="Название" />
-            <Entry x:Name="typeEntry" Placeholder="Тип" />
-            <Editor x:Name="descriptionEntry" Placeholder="Описание" AutoSize="TextChanges" />
+            <Entry x:Name="computerNameEntry" Placeholder="Название компьютера" />
+            <Entry x:Name="computerTypeEntry" Placeholder="Тип компьютера" />
+            <Editor x:Name="computerDescriptionEditor" Placeholder="Описание" AutoSize="TextChanges" />
 
             <Entry x:Name="modelEntry" Placeholder="Модель" />
             <Entry x:Name="cpuEntry" Placeholder="Процессор (CPU)" />
@@ -22,25 +22,27 @@
             <Image x:Name="imagePreview" HeightRequest="150" Aspect="AspectFit" IsVisible="False" />
 
             <HorizontalStackLayout Spacing="10">
-                <Image Source="pc1.png" HeightRequest="60">
+                <Image Source="photo.jpg" HeightRequest="60">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="pc1.png" />
+                        <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="photo.jpg" />
                     </Image.GestureRecognizers>
                 </Image>
-                <Image Source="pc2.png" HeightRequest="60">
+                <Image Source="ulqiora.jpg" HeightRequest="60">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="pc2.png" />
+                        <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="ulqiora.jpg" />
                     </Image.GestureRecognizers>
                 </Image>
-                <Image Source="pc3.png" HeightRequest="60">
+                <Image Source="rukiacold.jpg" HeightRequest="60">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="pc3.png" />
+                        <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="rukiacold.jpg" />
                     </Image.GestureRecognizers>
                 </Image>
             </HorizontalStackLayout>
 
-            <Button Text="💾 Сохранить" Clicked="OnSaveClicked" BackgroundColor="#4CAF50" TextColor="White" />
-            <Button Text="🗑 Удалить" Clicked="OnDeleteClicked" BackgroundColor="#F44336" TextColor="White" />
+            <Button Text="Сохранить"
+                    BackgroundColor="#2196F3"
+                    TextColor="White"
+                    Clicked="OnSaveComputerClicked" />
 
         </VerticalStackLayout>
     </ScrollView>

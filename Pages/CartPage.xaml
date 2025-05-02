@@ -1,18 +1,17 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppBookPJ.Pages.CartPage"
-             x:Name="cartPage"
              Title="Корзина">
 
-    <VerticalStackLayout>
-        <CollectionView x:Name="cartCollection">
+    <VerticalStackLayout Padding="20">
+        <CollectionView x:Name="cartCollection" ItemsSource="{Binding CartItems}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame Padding="10" BorderColor="LightGray" CornerRadius="10" Margin="5">
                         <VerticalStackLayout>
-                            <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="18" />
-                            <Label Text="{Binding Author}" FontSize="14" />
-                            <Label Text="{Binding Genre}" FontSize="12" TextColor="Gray" />
+                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" />
+                            <Label Text="{Binding Type}" FontSize="14" />
+                            <Label Text="{Binding Price, StringFormat='Цена: {0:C}'}" FontSize="14" TextColor="Gray" />
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>

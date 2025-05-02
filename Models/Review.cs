@@ -6,8 +6,7 @@ public class Review
 {
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
-
-    public int BookId { get; set; }
+    public int? ComputerId { get; set; } // может быть null, если это отзыв не на компьютер
 
     public string Username { get; set; }
 

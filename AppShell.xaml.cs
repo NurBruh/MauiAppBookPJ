@@ -18,14 +18,14 @@ public partial class AppShell : Shell
         {
             Items.Add(new FlyoutItem
             {
-                Title = "Каталог",
-                Route = "books",
+                Title = "Каталог ПК",
+                Route = "pc",
                 Items =
                 {
                     new ShellContent
                     {
-                        ContentTemplate = new DataTemplate(typeof(BooksPage)),
-                        Route = "books"
+                        ContentTemplate = new DataTemplate(typeof(PcPage)),
+                        Route = "pc"
                     }
                 }
             });
@@ -48,28 +48,14 @@ public partial class AppShell : Shell
         {
             Items.Add(new FlyoutItem
             {
-                Title = "📚 Каталог",
-                Route = "books",
+                Title = "💻 ПК Каталог",
+                Route = "pc",
                 Items =
                 {
                     new ShellContent
                     {
-                        ContentTemplate = new DataTemplate(typeof(BooksPage)),
-                        Route = "books"
-                    }
-                }
-            });
-
-            Items.Add(new FlyoutItem
-            {
-                Title = "⭐ Избранное",
-                Route = "favorites",
-                Items =
-                {
-                    new ShellContent
-                    {
-                        ContentTemplate = new DataTemplate(typeof(FavoritesPage)),
-                        Route = "favorites"
+                        ContentTemplate = new DataTemplate(typeof(PcPage)),
+                        Route = "pc"
                     }
                 }
             });
@@ -116,16 +102,16 @@ public partial class AppShell : Shell
 
     private async void OnInstagramTapped(object sender, EventArgs e)
     {
-        await Launcher.Default.OpenAsync("https://www.instagram.com/bookcherryy/");
+        await Launcher.Default.OpenAsync("https://www.instagram.com/senjumarru/");
     }
 
     private async void OnWhatsAppTapped(object sender, EventArgs e)
     {
-        await Launcher.Default.OpenAsync("https://www.instagram.com/bookcherryy/");
+        await Launcher.Default.OpenAsync("https://wa.me/7073940282");
     }
 
     private async void OnTikTokTapped(object sender, EventArgs e)
     {
-        await Launcher.Default.OpenAsync("https://www.instagram.com/bookcherryy/");
+        await Launcher.Default.OpenAsync("https://www.tiktok.com/@alinurrro?_t=ZS-8w1cwNZtNVU&_r=1");
     }
 }

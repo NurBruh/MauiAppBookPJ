@@ -1,0 +1,82 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppBookPJ.Pages.PcPage"
+             x:Name="pcPage"
+             Title="Каталог ПК">
+
+    <VerticalStackLayout Padding="10" Spacing="10">
+
+        <!-- Поиск по названию, видимость зависит от роли пользователя -->
+        <Entry x:Name="searchEntry"
+               Placeholder="Поиск по названию"
+               TextChanged="OnSearchTextChanged"
+               IsVisible="{Binding IsSearchVisible}" />
+        <!-- Привязка видимости -->
+
+        <!-- Фильтр по типу ПК, видимость зависит от роли пользователя -->
+        <Picker x:Name="typeFilterPicker"
+                Title="Фильтр по типу"
+                SelectedIndexChanged="OnTypeFilterChanged"
+                IsVisible="{Binding IsTypeFilterVisible}">
+            <!-- Привязка видимости -->
+        </Picker>
+
+        <!-- Карусель для изображений, видимость зависит от роли пользователя -->
+        <CarouselView x:Name="carousel"
+                      HeightRequest="200"
+                      IsVisible="{Binding IsCarouselVisible}"
+                      Margin="0,10">
+            <CarouselView.ItemsSource>
+                <x:Array Type="{x:Type ImageSource}">
+                    <FileImageSource File="photo.jpg" />
+                    <FileImageSource File="ulqiora.jpg" />
+                    <FileImageSource File="rukiacold.jpg" />
+                </x:Array>
+            </CarouselView.ItemsSource>
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding}" Aspect="AspectFill" />
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
+        <!-- Кнопка добавления ПК, видимость зависит от роли пользователя -->
+        <Button Text="Добавить ПК"
+                x:Name="addPcButton"
+                Clicked="OnAddPcClicked"
+                BackgroundColor="#2196F3"
+                TextColor="White"
+                IsVisible="{Binding IsAddPcButtonVisible}" />
+        <!-- Привязка видимости -->
+
+        <!-- Коллекция ПК -->
+        <CollectionView x:Name="pcCollection">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="5" BorderColor="LightGray" CornerRadius="10">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Source={x:Reference pcPage}, Path=BindingContext.PcTappedCommand}"
+                                CommandParameter="{Binding}" />
+                        </Frame.GestureRecognizers>
+
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" />
+                            <Label Text="{Binding Manufacturer}" FontSize="14" />
+                            <Label Text="{Binding Type}" FontSize="12" TextColor="Gray" />
+
+                            <!-- Кнопка добавления в корзину -->
+                            <Button Text="Добавить в корзину"
+                                    Clicked="OnAddToCartClicked"
+                                    BackgroundColor="#4CAF50"
+                                    TextColor="White"
+                                    FontSize="14"
+                                    HeightRequest="40"
+                                    Margin="0,5,0,0" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

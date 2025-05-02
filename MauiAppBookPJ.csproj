@@ -57,7 +57,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Pages\EditComputerPage.xaml.cs" />
+	  <Compile Remove="Pages\AddBookPage.xaml.cs" />
+	  <Compile Remove="Pages\BookDetailsPage.xaml.cs" />
+	  <Compile Remove="Pages\BooksPage.xaml.cs" />
+	  <Compile Remove="Pages\EditBookPage.xaml.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -70,7 +73,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Remove="Pages\EditComputerPage.xaml" />
+	  <MauiXaml Remove="Pages\AddBookPage.xaml" />
+	  <MauiXaml Remove="Pages\BookDetailsPage.xaml" />
+	  <MauiXaml Remove="Pages\BooksPage.xaml" />
+	  <MauiXaml Remove="Pages\EditBookPage.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -93,19 +99,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\AddBookPage.xaml">
+	  <MauiXaml Update="Pages\AddComputerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\BookDetailsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\BooksPage.xaml">
+	  <MauiXaml Update="Pages\AddReviewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\CartPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\EditBookPage.xaml">
+	  <MauiXaml Update="Pages\ComputerDetailsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\EditComputerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\FavoritesPage.xaml">
@@ -117,7 +123,13 @@
 	  <MauiXaml Update="Pages\OrderHistoryPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\PcPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\RegisterPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\ReviewDetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SplashPage.xaml">
