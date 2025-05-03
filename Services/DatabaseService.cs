@@ -161,5 +161,14 @@ namespace MauiAppBookPJ.Services
                 await _db.UpdateAsync(item);
             }
         }
+        public async Task<List<Review>> GetReviewsByBookIdAsync(int bookId)
+        {
+            await InitAsync();
+            return await _db.Table<Review>()
+                .Where(r => r.BookId == bookId)
+                .OrderByDescending(r => r.CreatedAt)
+                .ToListAsync();
+        }
+
     }
 }

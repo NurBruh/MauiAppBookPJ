@@ -28,9 +28,11 @@
                       Margin="0,10">
             <CarouselView.ItemsSource>
                 <x:Array Type="{x:Type ImageSource}">
-                    <FileImageSource File="photo.jpg" />
-                    <FileImageSource File="ulqiora.jpg" />
-                    <FileImageSource File="rukiacold.jpg" />
+                    <FileImageSource File="pc01.jpg" />
+                    <FileImageSource File="pc02.jpg" />
+                    <FileImageSource File="pc03.jpg" />
+                    <FileImageSource File="pc04.jpg" />
+                    
                 </x:Array>
             </CarouselView.ItemsSource>
             <CarouselView.ItemTemplate>

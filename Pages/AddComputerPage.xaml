@@ -24,17 +24,17 @@
             <HorizontalStackLayout Spacing="10">
                 <Image Source="photo.jpg" HeightRequest="60">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="photo.jpg" />
+                        <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="logo01.jpg" />
                     </Image.GestureRecognizers>
                 </Image>
                 <Image Source="ulqiora.jpg" HeightRequest="60">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="ulqiora.jpg" />
+                        <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="logo02.jpg" />
                     </Image.GestureRecognizers>
                 </Image>
                 <Image Source="rukiacold.jpg" HeightRequest="60">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="rukiacold.jpg" />
+                        <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="logo03.jpg" />
                     </Image.GestureRecognizers>
                 </Image>
             </HorizontalStackLayout>

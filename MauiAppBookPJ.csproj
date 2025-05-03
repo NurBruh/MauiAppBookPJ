@@ -57,26 +57,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Pages\AddBookPage.xaml.cs" />
-	  <Compile Remove="Pages\BookDetailsPage.xaml.cs" />
-	  <Compile Remove="Pages\BooksPage.xaml.cs" />
-	  <Compile Remove="Pages\EditBookPage.xaml.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <MauiImage Remove="Resources\Images\0kzSnJwT2CWNqC5snxI3v8NchkYsrzT9zf7MHSuREqu_qudLtufOa22aNcDqWIZqeZZflVHkFa.jpg" />
 	  <MauiImage Remove="Resources\Images\6eZGpzfO8QhjE9Gu2zpMWsX_r_F720252rwkJ_1Jcpf1AuTrzXXqtiAMJjWw31P.jpg" />
 	  <MauiImage Remove="Resources\Images\XXX.jpg" />
 	  <MauiImage Remove="Resources\Images\zenitsu.jpg" />
 	  <MauiImage Remove="Resources\Images\_PalVGZdhNXtPIZ5KIwFui4M2D0D_3LaC9slU84u9nslGWlumE0V3_ceEpqj6Qy.jpg" />
 	  <MauiImage Remove="Resources\Images\бека.jfif" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiXaml Remove="Pages\AddBookPage.xaml" />
-	  <MauiXaml Remove="Pages\BookDetailsPage.xaml" />
-	  <MauiXaml Remove="Pages\BooksPage.xaml" />
-	  <MauiXaml Remove="Pages\EditBookPage.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -99,16 +85,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\AddComputerPage.xaml">
+	  <MauiXaml Update="Pages\AddBookPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\AddReviewPage.xaml">
+	  <MauiXaml Update="Pages\BookDetailsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\BooksPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\CartPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\ComputerDetailsPage.xaml">
+	  <MauiXaml Update="Pages\EditBookPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\EditComputerPage.xaml">
@@ -123,13 +112,7 @@
 	  <MauiXaml Update="Pages\OrderHistoryPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\PcPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Pages\RegisterPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\ReviewDetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SplashPage.xaml">
