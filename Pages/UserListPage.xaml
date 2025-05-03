@@ -1,24 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppBookPJ.Pages.UserListPage"
-             Title="Пользователи">
+             Title="Пользователи"
+             BackgroundColor="#F5F7FA">
 
     <ScrollView>
-        <VerticalStackLayout Padding="15" Spacing="10">
-            <Label Text="Список зарегистрированных пользователей:" FontSize="20" FontAttributes="Bold" />
+        <VerticalStackLayout Padding="20" Spacing="15">
 
+            <!-- Заголовок -->
+            <Label Text="Список зарегистрированных пользователей:"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="#333"
+                   HorizontalOptions="Center" />
+
+            <!-- Список пользователей -->
             <CollectionView x:Name="usersCollection">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="5">
-                            <VerticalStackLayout>
-                                <Label Text="{Binding Username}" FontAttributes="Bold" FontSize="16" />
-                                <Label Text="{Binding Password}" FontSize="14" TextColor="Gray" />
+                        <Frame BorderColor="#D1D9E6"
+                               BackgroundColor="White"
+                               CornerRadius="15"
+                               Padding="15"
+                               Margin="5"
+                               HasShadow="True">
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="{Binding Username}"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       TextColor="#1E88E5" />
+
+                                <Label Text="{Binding Password}"
+                                       FontSize="14"
+                                       TextColor="#757575" />
                             </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

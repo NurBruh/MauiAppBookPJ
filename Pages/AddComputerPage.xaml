@@ -2,47 +2,94 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppBookPJ.Pages.AddComputerPage"
-             Title="Добавить компьютер">
+             Title="Добавить компьютер"
+             BackgroundColor="#F0F4F8">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
+        <VerticalStackLayout Padding="20" Spacing="16">
 
-            <Entry x:Name="computerNameEntry" Placeholder="Название компьютера" />
-            <Entry x:Name="computerTypeEntry" Placeholder="Тип компьютера" />
-            <Editor x:Name="computerDescriptionEditor" Placeholder="Описание" AutoSize="TextChanges" />
+            <!-- Название -->
+            <Frame CornerRadius="12" Padding="10" BackgroundColor="White" HasShadow="True">
+                <Entry x:Name="computerNameEntry" Placeholder="Название компьютера" FontSize="16" />
+            </Frame>
 
-            <Entry x:Name="modelEntry" Placeholder="Модель" />
-            <Entry x:Name="cpuEntry" Placeholder="Процессор (CPU)" />
-            <Entry x:Name="gpuEntry" Placeholder="Видеокарта (GPU)" />
-            <Entry x:Name="ramEntry" Placeholder="Оперативная память (RAM)" />
-            <Entry x:Name="storageEntry" Placeholder="Накопитель (SSD/HDD)" />
-            <Entry x:Name="priceEntry" Placeholder="Цена" Keyboard="Numeric" />
+            <!-- Тип -->
+            <Frame CornerRadius="12" Padding="10" BackgroundColor="White" HasShadow="True">
+                <Entry x:Name="computerTypeEntry" Placeholder="Тип компьютера" FontSize="16" />
+            </Frame>
 
-            <Label Text="Изображение" FontAttributes="Bold" />
+            <!-- Описание -->
+            <Frame CornerRadius="12" Padding="10" BackgroundColor="White" HasShadow="True">
+                <Editor x:Name="computerDescriptionEditor" 
+                        Placeholder="Описание" 
+                        AutoSize="TextChanges"
+                        FontSize="16" />
+            </Frame>
+
+            <!-- Характеристики -->
+            <Frame CornerRadius="12" Padding="10" BackgroundColor="White" HasShadow="True">
+                <Entry x:Name="modelEntry" Placeholder="Модель" FontSize="16" />
+            </Frame>
+
+            <Frame CornerRadius="12" Padding="10" BackgroundColor="White" HasShadow="True">
+                <Entry x:Name="cpuEntry" Placeholder="Процессор (CPU)" FontSize="16" />
+            </Frame>
+
+            <Frame CornerRadius="12" Padding="10" BackgroundColor="White" HasShadow="True">
+                <Entry x:Name="gpuEntry" Placeholder="Видеокарта (GPU)" FontSize="16" />
+            </Frame>
+
+            <Frame CornerRadius="12" Padding="10" BackgroundColor="White" HasShadow="True">
+                <Entry x:Name="ramEntry" Placeholder="Оперативная память (RAM)" FontSize="16" />
+            </Frame>
+
+            <Frame CornerRadius="12" Padding="10" BackgroundColor="White" HasShadow="True">
+                <Entry x:Name="storageEntry" Placeholder="Накопитель (SSD/HDD)" FontSize="16" />
+            </Frame>
+
+            <Frame CornerRadius="12" Padding="10" BackgroundColor="White" HasShadow="True">
+                <Entry x:Name="priceEntry" Placeholder="Цена" Keyboard="Numeric" FontSize="16" />
+            </Frame>
+
+            <!-- Изображение -->
+            <Label Text="Изображение" FontAttributes="Bold" FontSize="16" Margin="5,10,0,0" />
             <Image x:Name="imagePreview" HeightRequest="150" Aspect="AspectFit" IsVisible="False" />
 
+            <!-- Выбор изображения -->
             <HorizontalStackLayout Spacing="10">
-                <Image Source="photo.jpg" HeightRequest="60">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="logo01.jpg" />
-                    </Image.GestureRecognizers>
-                </Image>
-                <Image Source="ulqiora.jpg" HeightRequest="60">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="logo02.jpg" />
-                    </Image.GestureRecognizers>
-                </Image>
-                <Image Source="rukiacold.jpg" HeightRequest="60">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="logo03.jpg" />
-                    </Image.GestureRecognizers>
-                </Image>
+                <Frame Padding="5" CornerRadius="10" BackgroundColor="White" HasShadow="True">
+                    <Image Source="logo01.jpg" HeightRequest="60">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="logo01.jpg" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Frame>
+                <Frame Padding="5" CornerRadius="10" BackgroundColor="White" HasShadow="True">
+                    <Image Source="logo02.jpg" HeightRequest="60">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="logo02.jpg" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Frame>
+                <Frame Padding="5" CornerRadius="10" BackgroundColor="White" HasShadow="True">
+                    <Image Source="logo03.jpg" HeightRequest="60">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="logo03.jpg" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Frame>
             </HorizontalStackLayout>
 
-            <Button Text="Сохранить"
-                    BackgroundColor="#2196F3"
+            <!-- Кнопка сохранения -->
+            <Button Text="💾 Сохранить"
+                    BackgroundColor="#1976D2"
                     TextColor="White"
-                    Clicked="OnSaveComputerClicked" />
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="12"
+                    HeightRequest="50"
+                    Clicked="OnSaveComputerClicked"
+                    Margin="0,10,0,0" />
 
         </VerticalStackLayout>
     </ScrollView>

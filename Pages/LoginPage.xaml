@@ -1,27 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppBookPJ.Pages.LoginPage"
-             Title="Вход">
+             Title="Вход"
+             BackgroundColor="#F0F4F8">
 
     <VerticalStackLayout Padding="30" Spacing="20"
                          HorizontalOptions="Center"
                          VerticalOptions="Center">
 
-        <Label Text="Добро пожаловать!" FontSize="26" FontAttributes="Bold" HorizontalOptions="Center" />
+        <!-- Заголовок -->
+        <Label Text="Добро пожаловать!"
+               FontSize="28"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               TextColor="#333" />
 
-        <Entry x:Name="usernameEntry" Placeholder="Имя пользователя" />
-        <Entry x:Name="passwordEntry" Placeholder="Пароль" IsPassword="True" />
+        <!-- Поле имени пользователя -->
+        <Frame CornerRadius="12" BackgroundColor="White" HasShadow="True" Padding="10" WidthRequest="280">
+            <Entry x:Name="usernameEntry"
+                   Placeholder="Имя пользователя"
+                   FontSize="16" />
+        </Frame>
 
-        <Button Text="Войти"
+        <!-- Поле пароля -->
+        <Frame CornerRadius="12" BackgroundColor="White" HasShadow="True" Padding="10" WidthRequest="280">
+            <Entry x:Name="passwordEntry"
+                   Placeholder="Пароль"
+                   IsPassword="True"
+                   FontSize="16" />
+        </Frame>
+
+        <!-- Кнопка входа -->
+        <Button Text="🔐 Войти"
                 x:Name="loginButton"
                 Clicked="OnLoginClicked"
-                BackgroundColor="#2196F3"
-                TextColor="White" />
+                BackgroundColor="#1976D2"
+                TextColor="White"
+                FontSize="16"
+                CornerRadius="10"
+                WidthRequest="280"
+                HeightRequest="50" />
 
-        <Button Text="Регистрация"
+        <!-- Кнопка регистрации -->
+        <Button Text="📝 Регистрация"
                 x:Name="registerButton"
                 Clicked="OnRegisterClicked"
-                BackgroundColor="#757575"
-                TextColor="White" />
+                BackgroundColor="#546E7A"
+                TextColor="White"
+                FontSize="16"
+                CornerRadius="10"
+                WidthRequest="280"
+                HeightRequest="50" />
     </VerticalStackLayout>
 </ContentPage>
