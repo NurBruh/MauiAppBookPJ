@@ -3,54 +3,92 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppBookPJ.Pages.LoginPage"
              Title="Вход"
-             BackgroundColor="#F0F4F8">
+             BackgroundColor="#F9FAFB">
 
-    <VerticalStackLayout Padding="30" Spacing="20"
-                         HorizontalOptions="Center"
-                         VerticalOptions="Center">
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="25"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center">
 
-        <!-- Заголовок -->
-        <Label Text="Добро пожаловать!"
-               FontSize="28"
-               FontAttributes="Bold"
-               HorizontalOptions="Center"
-               TextColor="#333" />
+            <!-- Заголовок -->
+            <Label Text="Добро пожаловать 👋"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="#1F2937" />
 
-        <!-- Поле имени пользователя -->
-        <Frame CornerRadius="12" BackgroundColor="White" HasShadow="True" Padding="10" WidthRequest="280">
-            <Entry x:Name="usernameEntry"
-                   Placeholder="Имя пользователя"
-                   FontSize="16" />
-        </Frame>
+            <Label Text="Пожалуйста, войдите в систему"
+                   FontSize="16"
+                   TextColor="#6B7280"
+                   HorizontalOptions="Center" />
 
-        <!-- Поле пароля -->
-        <Frame CornerRadius="12" BackgroundColor="White" HasShadow="True" Padding="10" WidthRequest="280">
-            <Entry x:Name="passwordEntry"
-                   Placeholder="Пароль"
-                   IsPassword="True"
-                   FontSize="16" />
-        </Frame>
+            <!-- Поле имени пользователя -->
+            <Border Stroke="#E5E7EB" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                <Entry x:Name="usernameEntry"
+                       Placeholder="Имя пользователя"
+                       FontSize="16"
+                       BackgroundColor="Transparent"
+                       TextColor="#111827"
+                       Margin="10,5" />
+            </Border>
 
-        <!-- Кнопка входа -->
-        <Button Text="🔐 Войти"
-                x:Name="loginButton"
-                Clicked="OnLoginClicked"
-                BackgroundColor="#1976D2"
-                TextColor="White"
-                FontSize="16"
-                CornerRadius="10"
-                WidthRequest="280"
-                HeightRequest="50" />
+            <!-- Поле пароля -->
+            <Border Stroke="#E5E7EB" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                <Entry x:Name="passwordEntry"
+                       Placeholder="Пароль"
+                       IsPassword="True"
+                       FontSize="16"
+                       BackgroundColor="Transparent"
+                       TextColor="#111827"
+                       Margin="10,5" />
+            </Border>
 
-        <!-- Кнопка регистрации -->
-        <Button Text="📝 Регистрация"
-                x:Name="registerButton"
-                Clicked="OnRegisterClicked"
-                BackgroundColor="#546E7A"
-                TextColor="White"
-                FontSize="16"
-                CornerRadius="10"
-                WidthRequest="280"
-                HeightRequest="50" />
-    </VerticalStackLayout>
+            <!-- Кнопка входа -->
+            <Border StrokeThickness="0"
+        BackgroundColor="Transparent"
+        StrokeShape="RoundRectangle 12">
+                <Border.Shadow>
+                    <Shadow Brush="Black"
+                Offset="4,4"
+                Radius="8"
+                Opacity="0.3" />
+                </Border.Shadow>
+
+                <Button Text="🔐 Войти"
+            x:Name="loginButton"
+            Clicked="OnLoginClicked"
+            BackgroundColor="#2563EB"
+            TextColor="White"
+            FontSize="16"
+            CornerRadius="12"
+            HeightRequest="50"
+            WidthRequest="280" />
+            </Border>
+
+
+            <!-- Кнопка регистрации -->
+            <Border StrokeThickness="0"
+             BackgroundColor="Transparent"
+             StrokeShape="RoundRectangle 12">
+                <Border.Shadow>
+                    <Shadow Brush="Black"
+        Offset="4,4"
+        Radius="8"
+        Opacity="0.3" />
+                </Border.Shadow>
+
+                <Button Text="📝 Регистрация"
+            x:Name="registerButton"
+            Clicked="OnRegisterClicked"
+            BackgroundColor="#6B7280"
+            TextColor="White"
+            FontSize="16"
+            CornerRadius="12"
+            HeightRequest="50"
+            WidthRequest="280" />
+            </Border>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

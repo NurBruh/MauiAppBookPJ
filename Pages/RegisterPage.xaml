@@ -1,26 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppBookPJ.Pages.RegisterPage"
-             Title="Регистрация">
+             Title="Регистрация"
+             BackgroundColor="#F9FAFB">
 
-    <VerticalStackLayout Padding="30" Spacing="20"
-                         HorizontalOptions="Center"
-                         VerticalOptions="Center">
+    <ContentPage.Resources>
+        <Shadow x:Key="CardShadow"
+                Brush="Black"
+                Offset="2,2"
+                Radius="8"
+                Opacity="0.1" />
+    </ContentPage.Resources>
 
-        <Label Text="Регистрация" FontSize="26" FontAttributes="Bold" HorizontalOptions="Center" />
+    <VerticalStackLayout Padding="30" Spacing="24">
 
-        <Entry x:Name="usernameEntry" Placeholder="Имя пользователя" />
-        <Entry x:Name="passwordEntry" Placeholder="Пароль" IsPassword="True" />
-        <Entry x:Name="confirmEntry" Placeholder="Подтвердите пароль" IsPassword="True" />
+        <!-- Заголовок -->
+        <Label Text="Регистрация"
+               FontSize="28"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               TextColor="#374151" />
 
-        <Button Text="Зарегистрироваться"
-                Clicked="OnRegisterClicked"
-                BackgroundColor="#4CAF50"
-                TextColor="White" />
+        <!-- Имя пользователя -->
+        <Border Stroke="#E5E7EB"
+                BackgroundColor="White"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 10"
+                Shadow="{StaticResource CardShadow}">
+            <Entry x:Name="usernameEntry"
+                   Placeholder="Имя пользователя"
+                   FontSize="16"
+                   Margin="10,6" />
+        </Border>
 
-        <Button Text="Назад"
-                Clicked="OnBackClicked"
-                BackgroundColor="#757575"
-                TextColor="White" />
+        <!-- Пароль -->
+        <Border Stroke="#E5E7EB"
+                BackgroundColor="White"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 10"
+                Shadow="{StaticResource CardShadow}">
+            <Entry x:Name="passwordEntry"
+                   Placeholder="Пароль"
+                   IsPassword="True"
+                   FontSize="16"
+                   Margin="10,6" />
+        </Border>
+
+        <!-- Подтверждение пароля -->
+        <Border Stroke="#E5E7EB"
+                BackgroundColor="White"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 10"
+                Shadow="{StaticResource CardShadow}">
+            <Entry x:Name="confirmEntry"
+                   Placeholder="Подтвердите пароль"
+                   IsPassword="True"
+                   FontSize="16"
+                   Margin="10,6" />
+        </Border>
+
+        <!-- Кнопка регистрации -->
+        <Border StrokeThickness="0" Shadow="{StaticResource CardShadow}" StrokeShape="RoundRectangle 12">
+            <Button Text="Зарегистрироваться"
+                    Clicked="OnRegisterClicked"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="12"
+                    HeightRequest="50" />
+        </Border>
+
+        <!-- Кнопка назад -->
+        <Border StrokeThickness="0" Shadow="{StaticResource CardShadow}" StrokeShape="RoundRectangle 12">
+            <Button Text="Назад"
+                    Clicked="OnBackClicked"
+                    BackgroundColor="#757575"
+                    TextColor="White"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="12"
+                    HeightRequest="50" />
+        </Border>
+
     </VerticalStackLayout>
 </ContentPage>

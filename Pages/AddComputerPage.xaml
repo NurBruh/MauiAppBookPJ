@@ -3,93 +3,100 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppBookPJ.Pages.AddComputerPage"
              Title="Добавить компьютер"
-             BackgroundColor="#F0F4F8">
+             BackgroundColor="#F9FAFB">
+
+    <ContentPage.Resources>
+        <Shadow x:Key="CardShadow"
+                Brush="Black"
+                Offset="2,2"
+                Radius="8"
+                Opacity="0.1" />
+    </ContentPage.Resources>
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="16">
+        <VerticalStackLayout Padding="20" Spacing="18">
 
-            <!-- Название -->
-            <Frame CornerRadius="12" Padding="10" BackgroundColor="White" HasShadow="True">
-                <Entry x:Name="computerNameEntry" Placeholder="Название компьютера" FontSize="16" />
-            </Frame>
+            <!-- Универсальный метод для всех полей -->
+            <Border Stroke="#E5E7EB"
+                    StrokeThickness="1"
+                    BackgroundColor="White"
+                    StrokeShape="RoundRectangle 10"
+                    Shadow="{StaticResource CardShadow}">
+                <Entry x:Name="computerNameEntry" Placeholder="Название компьютера" FontSize="16" Margin="10,6" />
+            </Border>
 
-            <!-- Тип -->
-            <Frame CornerRadius="12" Padding="10" BackgroundColor="White" HasShadow="True">
-                <Entry x:Name="computerTypeEntry" Placeholder="Тип компьютера" FontSize="16" />
-            </Frame>
+            <Border Stroke="#E5E7EB" StrokeThickness="1" BackgroundColor="White" StrokeShape="RoundRectangle 10" Shadow="{StaticResource CardShadow}">
+                <Entry x:Name="computerTypeEntry" Placeholder="Тип компьютера" FontSize="16" Margin="10,6" />
+            </Border>
 
-            <!-- Описание -->
-            <Frame CornerRadius="12" Padding="10" BackgroundColor="White" HasShadow="True">
-                <Editor x:Name="computerDescriptionEditor" 
-                        Placeholder="Описание" 
-                        AutoSize="TextChanges"
-                        FontSize="16" />
-            </Frame>
+            <Border Stroke="#E5E7EB" StrokeThickness="1" BackgroundColor="White" StrokeShape="RoundRectangle 10" Shadow="{StaticResource CardShadow}">
+                <Editor x:Name="computerDescriptionEditor" Placeholder="Описание" FontSize="16" Margin="10,6" AutoSize="TextChanges" />
+            </Border>
 
-            <!-- Характеристики -->
-            <Frame CornerRadius="12" Padding="10" BackgroundColor="White" HasShadow="True">
-                <Entry x:Name="modelEntry" Placeholder="Модель" FontSize="16" />
-            </Frame>
+            <Border Stroke="#E5E7EB" StrokeThickness="1" BackgroundColor="White" StrokeShape="RoundRectangle 10" Shadow="{StaticResource CardShadow}">
+                <Entry x:Name="modelEntry" Placeholder="Модель" FontSize="16" Margin="10,6" />
+            </Border>
 
-            <Frame CornerRadius="12" Padding="10" BackgroundColor="White" HasShadow="True">
-                <Entry x:Name="cpuEntry" Placeholder="Процессор (CPU)" FontSize="16" />
-            </Frame>
+            <Border Stroke="#E5E7EB" StrokeThickness="1" BackgroundColor="White" StrokeShape="RoundRectangle 10" Shadow="{StaticResource CardShadow}">
+                <Entry x:Name="cpuEntry" Placeholder="Процессор (CPU)" FontSize="16" Margin="10,6" />
+            </Border>
 
-            <Frame CornerRadius="12" Padding="10" BackgroundColor="White" HasShadow="True">
-                <Entry x:Name="gpuEntry" Placeholder="Видеокарта (GPU)" FontSize="16" />
-            </Frame>
+            <Border Stroke="#E5E7EB" StrokeThickness="1" BackgroundColor="White" StrokeShape="RoundRectangle 10" Shadow="{StaticResource CardShadow}">
+                <Entry x:Name="gpuEntry" Placeholder="Видеокарта (GPU)" FontSize="16" Margin="10,6" />
+            </Border>
 
-            <Frame CornerRadius="12" Padding="10" BackgroundColor="White" HasShadow="True">
-                <Entry x:Name="ramEntry" Placeholder="Оперативная память (RAM)" FontSize="16" />
-            </Frame>
+            <Border Stroke="#E5E7EB" StrokeThickness="1" BackgroundColor="White" StrokeShape="RoundRectangle 10" Shadow="{StaticResource CardShadow}">
+                <Entry x:Name="ramEntry" Placeholder="Оперативная память (RAM)" FontSize="16" Margin="10,6" />
+            </Border>
 
-            <Frame CornerRadius="12" Padding="10" BackgroundColor="White" HasShadow="True">
-                <Entry x:Name="storageEntry" Placeholder="Накопитель (SSD/HDD)" FontSize="16" />
-            </Frame>
+            <Border Stroke="#E5E7EB" StrokeThickness="1" BackgroundColor="White" StrokeShape="RoundRectangle 10" Shadow="{StaticResource CardShadow}">
+                <Entry x:Name="storageEntry" Placeholder="Накопитель (SSD/HDD)" FontSize="16" Margin="10,6" />
+            </Border>
 
-            <Frame CornerRadius="12" Padding="10" BackgroundColor="White" HasShadow="True">
-                <Entry x:Name="priceEntry" Placeholder="Цена" Keyboard="Numeric" FontSize="16" />
-            </Frame>
+            <Border Stroke="#E5E7EB" StrokeThickness="1" BackgroundColor="White" StrokeShape="RoundRectangle 10" Shadow="{StaticResource CardShadow}">
+                <Entry x:Name="priceEntry" Placeholder="Цена" Keyboard="Numeric" FontSize="16" Margin="10,6" />
+            </Border>
 
             <!-- Изображение -->
-            <Label Text="Изображение" FontAttributes="Bold" FontSize="16" Margin="5,10,0,0" />
-            <Image x:Name="imagePreview" HeightRequest="150" Aspect="AspectFit" IsVisible="False" />
+            <Label Text="Изображение" FontAttributes="Bold" FontSize="16" TextColor="#374151" Margin="0,10,0,0" />
+            <Image x:Name="imagePreview" HeightRequest="150" Aspect="AspectFit" IsVisible="False" Margin="0,0,0,10" />
 
             <!-- Выбор изображения -->
-            <HorizontalStackLayout Spacing="10">
-                <Frame Padding="5" CornerRadius="10" BackgroundColor="White" HasShadow="True">
-                    <Image Source="logo01.jpg" HeightRequest="60">
+            <HorizontalStackLayout Spacing="12">
+                <Border StrokeThickness="0" BackgroundColor="White" Shadow="{StaticResource CardShadow}" StrokeShape="RoundRectangle 10">
+                    <Image Source="logo01.jpg" HeightRequest="60" Margin="5">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="logo01.jpg" />
                         </Image.GestureRecognizers>
                     </Image>
-                </Frame>
-                <Frame Padding="5" CornerRadius="10" BackgroundColor="White" HasShadow="True">
-                    <Image Source="logo02.jpg" HeightRequest="60">
+                </Border>
+                <Border StrokeThickness="0" BackgroundColor="White" Shadow="{StaticResource CardShadow}" StrokeShape="RoundRectangle 10">
+                    <Image Source="logo02.jpg" HeightRequest="60" Margin="5">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="logo02.jpg" />
                         </Image.GestureRecognizers>
                     </Image>
-                </Frame>
-                <Frame Padding="5" CornerRadius="10" BackgroundColor="White" HasShadow="True">
-                    <Image Source="logo03.jpg" HeightRequest="60">
+                </Border>
+                <Border StrokeThickness="0" BackgroundColor="White" Shadow="{StaticResource CardShadow}" StrokeShape="RoundRectangle 10">
+                    <Image Source="logo03.jpg" HeightRequest="60" Margin="5">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="logo03.jpg" />
                         </Image.GestureRecognizers>
                     </Image>
-                </Frame>
+                </Border>
             </HorizontalStackLayout>
 
-            <!-- Кнопка сохранения -->
-            <Button Text="💾 Сохранить"
-                    BackgroundColor="#1976D2"
-                    TextColor="White"
-                    FontSize="16"
-                    FontAttributes="Bold"
-                    CornerRadius="12"
-                    HeightRequest="50"
-                    Clicked="OnSaveComputerClicked"
-                    Margin="0,10,0,0" />
+            <!-- Кнопка -->
+            <Border StrokeThickness="0" Shadow="{StaticResource CardShadow}" StrokeShape="RoundRectangle 12">
+                <Button Text="💾 Сохранить"
+                        BackgroundColor="#2563EB"
+                        TextColor="White"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="12"
+                        HeightRequest="50"
+                        Clicked="OnSaveComputerClicked" />
+            </Border>
 
         </VerticalStackLayout>
     </ScrollView>

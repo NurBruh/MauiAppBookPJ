@@ -36,102 +36,7 @@ public partial class CartPage : ContentPage
         OnDownloadPdfClicked(sender, e);
     }
 
-    //private async void OnDownloadPdfClicked(object sender, EventArgs e)
-    //{
-    //    var computers = cartCollection.ItemsSource.Cast<Computer>().ToList();
 
-    //    if (computers.Count == 0)
-    //    {
-    //        await DisplayAlert("Внимание", "Корзина пуста.", "ОК");
-    //        return;
-    //    }
-
-    //    PdfDocument document = new PdfDocument();
-    //    PdfPage page = document.Pages.Add();
-    //    PdfGraphics graphics = page.Graphics;
-
-    //    float y = 10;
-
-    //    var logoPath = Path.Combine(FileSystem.Current.AppDataDirectory, "logo.png");
-    //    if (File.Exists(logoPath))
-    //    {
-    //        using (FileStream imageStream = new FileStream(logoPath, FileMode.Open, FileAccess.Read))
-    //        {
-    //            PdfBitmap logo = new PdfBitmap(imageStream);
-    //            graphics.DrawImage(logo, new RectangleF(0, y, 80, 80));
-    //            y += 90;
-    //        }
-    //    }
-
-    //    graphics.DrawString("🖥 ComputerStore - Чек заказа",
-    //        new PdfStandardFont(PdfFontFamily.Helvetica, 18, PdfFontStyle.Bold),
-    //        PdfBrushes.DarkBlue,
-    //        new Syncfusion.Drawing.PointF(0, y));
-    //    y += 30;
-
-    //    graphics.DrawString($"Пользователь: {App.CurrentUser?.Username}",
-    //        new PdfStandardFont(PdfFontFamily.Helvetica, 12),
-    //        PdfBrushes.Black,
-    //        new Syncfusion.Drawing.PointF(0, y));
-    //    y += 20;
-
-    //    graphics.DrawString($"Дата: {DateTime.Now:dd.MM.yyyy}",
-    //        new PdfStandardFont(PdfFontFamily.Helvetica, 12),
-    //        PdfBrushes.Black,
-    //        new Syncfusion.Drawing.PointF(0, y));
-    //    y += 30;
-
-    //    foreach (var computer in computers)
-    //    {
-    //        graphics.DrawString($"💻 {computer.Name} — {computer.Specifications}",
-    //            new PdfStandardFont(PdfFontFamily.Helvetica, 12),
-    //            PdfBrushes.Black,
-    //            new Syncfusion.Drawing.PointF(0, y));
-    //        y += 20;
-    //    }
-
-    //    y += 20;
-    //    graphics.DrawString("Спасибо за заказ!",
-    //        new PdfStandardFont(PdfFontFamily.Helvetica, 12, PdfFontStyle.Italic),
-    //        PdfBrushes.DarkGreen,
-    //        new Syncfusion.Drawing.PointF(0, y));
-
-    //    var fileName = $"order_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
-    //    var filePath = Path.Combine(FileSystem.AppDataDirectory, fileName);
-
-    //    using (FileStream outputFile = new FileStream(filePath, FileMode.Create, FileAccess.Write))
-    //        document.Save(outputFile);
-
-    //    document.Close(true);
-
-    //    var order = new OrderHistory
-    //    {
-    //        UserId = App.CurrentUser.Id,
-    //        BookTitles = string.Join("; ", computers.Select(c => c.Name)),
-    //        PdfPath = filePath,
-    //        CreatedAt = DateTime.Now
-    //    };
-
-    //    await Task.WhenAll(
-    //        App.DbService.AddOrderHistoryAsync(order), // Добавляем запись в историю заказов
-    //        Task.WhenAll(computers.Select(c =>
-    //        {
-    //            c.InCart = false; // Обновляем статус товаров
-    //            return App.DbService.UpdateComputerAsync(c);
-    //        }))
-    //    );
-
-    //    CartService.CartItems.Clear(); // Очищаем корзину в CartService
-
-    //    // Обновляем представление корзины
-    //    cartCollection.ItemsSource = null;
-
-    //    // Открытие файла PDF
-    //    await Launcher.Default.OpenAsync(new OpenFileRequest
-    //    {
-    //        File = new ReadOnlyFile(filePath)
-    //    });
-    //}
     private async void OnDownloadPdfClicked(object sender, EventArgs e)
     {
         var computers = cartCollection.ItemsSource.Cast<Computer>().ToList();
@@ -150,76 +55,112 @@ public partial class CartPage : ContentPage
 
         PdfDocument document = new PdfDocument();
         PdfPage page = document.Pages.Add();
+        page.Section.PageSettings.Orientation = PdfPageOrientation.Landscape; // Альбомная ориентация
         PdfGraphics graphics = page.Graphics;
 
         float y = 10;
 
+        // 🖼 Логотип
         var logoPath = Path.Combine(FileSystem.Current.AppDataDirectory, "logo.png");
         if (File.Exists(logoPath))
         {
-            using (FileStream imageStream = new FileStream(logoPath, FileMode.Open, FileAccess.Read))
-            {
-                PdfBitmap logo = new PdfBitmap(imageStream);
-                graphics.DrawImage(logo, new RectangleF(0, y, 80, 80));
-                y += 90;
-            }
+            using var imageStream = new FileStream(logoPath, FileMode.Open, FileAccess.Read);
+            var logo = new PdfBitmap(imageStream);
+            graphics.DrawImage(logo, new RectangleF(0, y, 80, 80));
+            y += 90;
         }
 
+        // 📢 Заголовок и дата
         graphics.DrawString("🖥 ComputerStore - Чек заказа",
             new PdfStandardFont(PdfFontFamily.Helvetica, 18, PdfFontStyle.Bold),
             PdfBrushes.DarkBlue,
             new Syncfusion.Drawing.PointF(0, y));
         y += 30;
 
-        graphics.DrawString($"Пользователь: {App.CurrentUser.Username}",
+        graphics.DrawString($"Покупатель: {App.CurrentUser.Username}",
             new PdfStandardFont(PdfFontFamily.Helvetica, 12),
             PdfBrushes.Black,
             new Syncfusion.Drawing.PointF(0, y));
         y += 20;
 
-        graphics.DrawString($"Дата: {DateTime.Now:dd.MM.yyyy}",
+        graphics.DrawString($"Дата: {DateTime.Now:dd.MM.yyyy HH:mm}",
             new PdfStandardFont(PdfFontFamily.Helvetica, 12),
             PdfBrushes.Black,
             new Syncfusion.Drawing.PointF(0, y));
         y += 30;
 
-        decimal total = 0;
+        // 🧾 Таблица
+        string[] headers = { "Название", "Модель", "Тип", "CPU", "GPU", "RAM", "Storage", "Цена" };
+        float[] columnWidths = { 100, 80, 60, 80, 80, 60, 80, 70 }; // ~610
+        float rowHeight = 20;
+        var borderPen = new PdfPen(PdfBrushes.LightGray, 0.5f);
+        var headerFont = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold);
+        var cellFont = new PdfStandardFont(PdfFontFamily.Helvetica, 9);
+        var headerBrush = PdfBrushes.White;
+        var cellBrush = PdfBrushes.Black;
 
-        foreach (var computer in computers)
+        float tableWidth = columnWidths.Sum();
+        float x = 0;
+
+        // 🟦 Заголовки
+        graphics.DrawRectangle(PdfBrushes.SteelBlue, new RectangleF(x, y, tableWidth, rowHeight));
+        for (int i = 0; i < headers.Length; i++)
         {
-            if (y > page.GetClientSize().Height - 40)
+            graphics.DrawRectangle(borderPen, new RectangleF(x, y, columnWidths[i], rowHeight));
+            graphics.DrawString(headers[i], headerFont, headerBrush, new RectangleF(x + 2, y + 3, columnWidths[i], rowHeight));
+            x += columnWidths[i];
+        }
+        y += rowHeight;
+
+        // 📄 Строки
+        decimal total = 0;
+        foreach (var pc in computers)
+        {
+            if (y > page.GetClientSize().Height - rowHeight - 40)
             {
                 page = document.Pages.Add();
+                page.Section.PageSettings.Orientation = PdfPageOrientation.Landscape;
                 graphics = page.Graphics;
                 y = 10;
             }
 
-            string truncatedSpec = computer.Specifications.Length > 80
-                ? computer.Specifications.Substring(0, 77) + "..."
-                : computer.Specifications;
+            x = 0;
+            string[] row = {
+            pc.Name,
+            pc.Model,
+            pc.Type,
+            pc.CPU,
+            pc.GPU,
+            pc.RAM,
+            pc.Storage,
+            $"{pc.Price:C}"
+        };
 
-            graphics.DrawString($"💻 {computer.Name} — {truncatedSpec}",
-                new PdfStandardFont(PdfFontFamily.Helvetica, 12),
-                PdfBrushes.Black,
-                new Syncfusion.Drawing.PointF(0, y));
-            y += 20;
+            for (int i = 0; i < row.Length; i++)
+            {
+                graphics.DrawRectangle(borderPen, new RectangleF(x, y, columnWidths[i], rowHeight));
+                graphics.DrawString(row[i], cellFont, cellBrush, new RectangleF(x + 2, y + 3, columnWidths[i], rowHeight));
+                x += columnWidths[i];
+            }
 
-            total += computer.Price; // Предполагается, что у Computer есть decimal Price
+            y += rowHeight;
+            total += pc.Price;
         }
 
-        y += 10;
-
-        graphics.DrawString($"Итого: {total:C}",
-            new PdfStandardFont(PdfFontFamily.Helvetica, 12, PdfFontStyle.Bold),
+        // 💰 Итог
+        y += 15;
+        graphics.DrawString($"ИТОГО К ОПЛАТЕ: {total:C}",
+            new PdfStandardFont(PdfFontFamily.Helvetica, 14, PdfFontStyle.Bold),
             PdfBrushes.Black,
             new Syncfusion.Drawing.PointF(0, y));
-        y += 20;
+        y += 30;
 
-        graphics.DrawString("Спасибо за заказ!",
+        graphics.DrawString("Спасибо за покупку!",
             new PdfStandardFont(PdfFontFamily.Helvetica, 12, PdfFontStyle.Italic),
             PdfBrushes.DarkGreen,
             new Syncfusion.Drawing.PointF(0, y));
 
+        // 💾 Сохранение
         var fileName = $"order_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
         var filePath = Path.Combine(FileSystem.AppDataDirectory, fileName);
 
@@ -228,6 +169,7 @@ public partial class CartPage : ContentPage
 
         document.Close(true);
 
+        // 🗂 История заказа
         var order = new OrderHistory
         {
             UserId = App.CurrentUser.Id,
@@ -253,8 +195,11 @@ public partial class CartPage : ContentPage
             File = new ReadOnlyFile(filePath)
         });
 
-        await Navigation.PopToRootAsync(); // Возврат на главную страницу
+        await Navigation.PopToRootAsync();
     }
+
+
+
 
 
 }

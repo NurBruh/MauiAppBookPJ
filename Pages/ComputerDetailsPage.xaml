@@ -1,8 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppBookPJ.Pages.ComputerDetailsPage"
              Title="Детали компьютера"
              BackgroundColor="#F3F4F6">
+
+    <ContentPage.Resources>
+        <Shadow x:Key="CardShadow" Brush="Black" Offset="2,2" Radius="8" Opacity="0.1" />
+    </ContentPage.Resources>
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="25">
@@ -16,36 +21,42 @@
 
             <!-- Информация о компьютере -->
             <VerticalStackLayout Spacing="15">
+
                 <!-- Один блок -->
-                <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" Padding="15" CornerRadius="15">
+                <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" Padding="15" CornerRadius="15"
+                       Shadow="{StaticResource CardShadow}">
                     <VerticalStackLayout>
                         <Label Text="Тип:" FontSize="18" TextColor="#3B3B3B"/>
                         <Label Text="{Binding Type}" FontSize="20" TextColor="#1D1D1F" FontAttributes="Bold"/>
                     </VerticalStackLayout>
                 </Frame>
 
-                <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" Padding="15" CornerRadius="15">
+                <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" Padding="15" CornerRadius="15"
+                       Shadow="{StaticResource CardShadow}">
                     <VerticalStackLayout>
                         <Label Text="Модель:" FontSize="18" TextColor="#3B3B3B"/>
                         <Label Text="{Binding Model}" FontSize="20" TextColor="#1D1D1F" FontAttributes="Bold"/>
                     </VerticalStackLayout>
                 </Frame>
 
-                <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" Padding="15" CornerRadius="15">
+                <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" Padding="15" CornerRadius="15"
+                       Shadow="{StaticResource CardShadow}">
                     <VerticalStackLayout>
                         <Label Text="Описание:" FontSize="18" TextColor="#3B3B3B"/>
                         <Label Text="{Binding Description}" FontSize="20" TextColor="#1D1D1F" FontAttributes="Bold"/>
                     </VerticalStackLayout>
                 </Frame>
 
-                <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" Padding="15" CornerRadius="15">
+                <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" Padding="15" CornerRadius="15"
+                       Shadow="{StaticResource CardShadow}">
                     <VerticalStackLayout>
                         <Label Text="Процессор:" FontSize="18" TextColor="#3B3B3B"/>
                         <Label Text="{Binding CPU}" FontSize="20" TextColor="#1D1D1F" FontAttributes="Bold"/>
                     </VerticalStackLayout>
                 </Frame>
 
-                <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" Padding="15" CornerRadius="15">
+                <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" Padding="15" CornerRadius="15"
+                       Shadow="{StaticResource CardShadow}">
                     <VerticalStackLayout>
                         <Label Text="Графика:" FontSize="18" TextColor="#3B3B3B"/>
                         <Label Text="{Binding GPU}" FontSize="20" TextColor="#1D1D1F" FontAttributes="Bold"/>
@@ -72,7 +83,8 @@
                    HorizontalOptions="Center"/>
 
             <!-- Список отзывов -->
-            <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" Padding="15" CornerRadius="15">
+            <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" Padding="15" CornerRadius="15"
+                   Shadow="{StaticResource CardShadow}">
                 <ListView x:Name="ReviewsList"
                           BackgroundColor="#F9FAFB"
                           SeparatorColor="#E5E7EB"
@@ -81,7 +93,8 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Frame BackgroundColor="#F3F4F6" Padding="10" CornerRadius="10">
+                                <Frame BackgroundColor="#F3F4F6" Padding="10" CornerRadius="10"
+                                       Shadow="{StaticResource CardShadow}">
                                     <VerticalStackLayout>
                                         <Label Text="{Binding Username}" 
                                                FontSize="18" 
@@ -99,7 +112,8 @@
             </Frame>
 
             <!-- Добавление отзыва -->
-            <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" Padding="15" CornerRadius="15">
+            <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" Padding="15" CornerRadius="15"
+                   Shadow="{StaticResource CardShadow}">
                 <VerticalStackLayout Spacing="10">
 
                     <!-- Имя автора -->

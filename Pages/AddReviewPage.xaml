@@ -1,12 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="MauiAppBookPJ.Pages.AddReviewPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#F9FAFB"
+    Title="Добавить отзыв">
 
-    <StackLayout Padding="20">
-        <Entry x:Name="UsernameEntry" Placeholder="Ваше имя" />
-        <Editor x:Name="TextEditor" Placeholder="Ваш отзыв" HeightRequest="120" />
+    <ContentPage.Resources>
+        <Shadow x:Key="CardShadow"
+                Brush="Black"
+                Offset="2,2"
+                Radius="8"
+                Opacity="0.1" />
+    </ContentPage.Resources>
 
-        <Button Text="Сохранить отзыв" Clicked="OnSaveClicked" />
-    </StackLayout>
+    <VerticalStackLayout Padding="20" Spacing="16">
+
+        <Label Text="Оставьте отзыв"
+               FontSize="24"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               TextColor="#1F2937"
+               Margin="0,0,0,10" />
+
+        <!-- Имя пользователя -->
+        <Border Stroke="#E5E7EB"
+                BackgroundColor="White"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 10"
+                Shadow="{StaticResource CardShadow}">
+            <Entry x:Name="UsernameEntry"
+                   Placeholder="Ваше имя"
+                   FontSize="16"
+                   Margin="10,6" />
+        </Border>
+
+        <!-- Текст отзыва -->
+        <Border Stroke="#E5E7EB"
+                BackgroundColor="White"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 10"
+                Shadow="{StaticResource CardShadow}">
+            <Editor x:Name="TextEditor"
+                    Placeholder="Ваш отзыв"
+                    FontSize="16"
+                    AutoSize="TextChanges"
+                    HeightRequest="120"
+                    Margin="10,6" />
+        </Border>
+
+        <!-- Кнопка -->
+        <Border StrokeThickness="0"
+                StrokeShape="RoundRectangle 12"
+                Shadow="{StaticResource CardShadow}">
+            <Button Text="💾 Сохранить отзыв"
+                    Clicked="OnSaveClicked"
+                    BackgroundColor="#2563EB"
+                    TextColor="White"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="12"
+                    HeightRequest="50" />
+        </Border>
+
+    </VerticalStackLayout>
 </ContentPage>

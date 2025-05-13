@@ -1,27 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppBookPJ.Pages.CartPage"
-             Title="Корзина">
+             Title="Корзина"
+             BackgroundColor="#F9FAFB">
 
-    <VerticalStackLayout Padding="20">
+    <ContentPage.Resources>
+        <Shadow x:Key="CardShadow"
+                Brush="Black"
+                Offset="2,2"
+                Radius="8"
+                Opacity="0.1" />
+    </ContentPage.Resources>
+
+    <VerticalStackLayout Padding="20" Spacing="16">
+
+        <!-- Корзина -->
         <CollectionView x:Name="cartCollection" ItemsSource="{Binding CartItems}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Padding="10" BorderColor="LightGray" CornerRadius="10" Margin="5">
-                        <VerticalStackLayout>
-                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" />
-                            <Label Text="{Binding Type}" FontSize="14" />
-                            <Label Text="{Binding Price, StringFormat='Цена: {0:C}'}" FontSize="14" TextColor="Gray" />
+                    <Frame Padding="12" BorderColor="#E5E7EB" CornerRadius="10" Margin="5"
+                           Shadow="{StaticResource CardShadow}">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" TextColor="#374151" />
+                            <Label Text="{Binding Type}" FontSize="14" TextColor="#6B7280" />
+                            <Label Text="{Binding Price, StringFormat='Цена: {0:C}'}" FontSize="14" TextColor="#6B7280" />
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Button Text="Оформить заказ"
-                Clicked="OnCheckoutClicked"
-                BackgroundColor="#4CAF50"
-                TextColor="White"
-                Margin="10,5" />
+        <!-- Кнопка оформления заказа -->
+        <Border StrokeThickness="0" Shadow="{StaticResource CardShadow}" StrokeShape="RoundRectangle 12">
+            <Button Text="Оформить заказ"
+                    Clicked="OnCheckoutClicked"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="12"
+                    HeightRequest="50" />
+        </Border>
+
     </VerticalStackLayout>
 </ContentPage>
