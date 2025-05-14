@@ -97,12 +97,14 @@ public partial class PcPage : ContentPage
         var filtered = _allComputers
             .Where(pc =>
                 (string.IsNullOrEmpty(search) || pc.Name.ToLower().Contains(search)) &&
-                (string.IsNullOrEmpty(selectedType) || selectedType == "Все ПК" || pc.Type == selectedType)
+                (string.IsNullOrEmpty(selectedType) || selectedType == "Все ПК" ||
+                 (!string.IsNullOrEmpty(pc.Type) && pc.Type.Equals(selectedType, StringComparison.OrdinalIgnoreCase)))
             )
             .ToList();
 
         pcCollection.ItemsSource = filtered;
     }
+
 
     // Обработчик нажатия кнопки добавления нового ПК
     private async void OnAddPcClicked(object sender, EventArgs e)
