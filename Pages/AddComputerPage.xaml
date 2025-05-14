@@ -88,7 +88,7 @@
 
             <!-- Кнопка -->
             <Border StrokeThickness="0" Shadow="{StaticResource CardShadow}" StrokeShape="RoundRectangle 12">
-                <Button Text="💾 Сохранить"
+                <Button Text="Сохранить"
                         BackgroundColor="#2563EB"
                         TextColor="White"
                         FontSize="16"

@@ -89,10 +89,13 @@ public partial class CartPage : ContentPage
             new Syncfusion.Drawing.PointF(0, y));
         y += 30;
 
-        // 🧾 Таблица
+        // 🧾 Оптимизированная таблица для всех нужных полей
         string[] headers = { "Название", "Модель", "Тип", "CPU", "GPU", "RAM", "Storage", "Цена" };
-        float[] columnWidths = { 100, 80, 60, 80, 80, 60, 80, 70 }; // ~610
-        float rowHeight = 20;
+
+        // Оптимизированная ширина колонок для лучшей читаемости
+        float[] columnWidths = { 130, 70, 60, 100, 100, 60, 70, 70 }; // ~660
+        float rowHeight = 25; // Увеличил высоту строки для лучшей читаемости
+
         var borderPen = new PdfPen(PdfBrushes.LightGray, 0.5f);
         var headerFont = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold);
         var cellFont = new PdfStandardFont(PdfFontFamily.Helvetica, 9);
@@ -102,20 +105,24 @@ public partial class CartPage : ContentPage
         float tableWidth = columnWidths.Sum();
         float x = 0;
 
-        // 🟦 Заголовки
+        // 🟦 Заголовки с улучшенным форматированием
         graphics.DrawRectangle(PdfBrushes.SteelBlue, new RectangleF(x, y, tableWidth, rowHeight));
         for (int i = 0; i < headers.Length; i++)
         {
             graphics.DrawRectangle(borderPen, new RectangleF(x, y, columnWidths[i], rowHeight));
-            graphics.DrawString(headers[i], headerFont, headerBrush, new RectangleF(x + 2, y + 3, columnWidths[i], rowHeight));
+            graphics.DrawString(headers[i], headerFont, headerBrush,
+                new RectangleF(x + 2, y + 5, columnWidths[i] - 4, rowHeight - 6));
             x += columnWidths[i];
         }
         y += rowHeight;
 
-        // 📄 Строки
+        // 📄 Строки с данными и чередующимся оформлением
         decimal total = 0;
+        bool alternateRow = false;
+
         foreach (var pc in computers)
         {
+            // Проверка необходимости новой страницы
             if (y > page.GetClientSize().Height - rowHeight - 40)
             {
                 page = document.Pages.Add();
@@ -136,15 +143,28 @@ public partial class CartPage : ContentPage
             $"{pc.Price:C}"
         };
 
+            // Добавляем чередующийся цвет фона для лучшей читаемости
+            if (alternateRow)
+                graphics.DrawRectangle(new PdfSolidBrush(new PdfColor(240, 240, 240)),
+                    new RectangleF(0, y, tableWidth, rowHeight));
+
             for (int i = 0; i < row.Length; i++)
             {
                 graphics.DrawRectangle(borderPen, new RectangleF(x, y, columnWidths[i], rowHeight));
-                graphics.DrawString(row[i], cellFont, cellBrush, new RectangleF(x + 2, y + 3, columnWidths[i], rowHeight));
+
+                // Добавляем обрезку текста, если он слишком длинный
+                var text = row[i];
+                if (text.Length > 20 && i == 0) // Для названия
+                    text = text.Substring(0, 18) + "...";
+
+                graphics.DrawString(text, cellFont, cellBrush,
+                    new RectangleF(x + 2, y + 5, columnWidths[i] - 4, rowHeight - 6));
                 x += columnWidths[i];
             }
 
             y += rowHeight;
             total += pc.Price;
+            alternateRow = !alternateRow;
         }
 
         // 💰 Итог
@@ -197,7 +217,6 @@ public partial class CartPage : ContentPage
 
         await Navigation.PopToRootAsync();
     }
-
 
 
 

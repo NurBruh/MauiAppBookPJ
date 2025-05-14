@@ -53,7 +53,7 @@
         <Border StrokeThickness="0"
                 StrokeShape="RoundRectangle 12"
                 Shadow="{StaticResource CardShadow}">
-            <Button Text="💾 Сохранить отзыв"
+            <Button Text="Сохранить отзыв"
                     Clicked="OnSaveClicked"
                     BackgroundColor="#2563EB"
                     TextColor="White"

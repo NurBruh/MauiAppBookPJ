@@ -11,7 +11,7 @@
             <!-- Поиск -->
             <Frame BackgroundColor="White" CornerRadius="12" HasShadow="True" Padding="10" IsVisible="{Binding IsSearchVisible}">
                 <Entry x:Name="searchEntry"
-                       Placeholder="🔍 Поиск по названию"
+                       Placeholder="Поиск по названию"
                        FontSize="16"
                        TextChanged="OnSearchTextChanged"
                        BackgroundColor="Transparent" />
@@ -20,7 +20,7 @@
             <!-- Фильтр -->
             <Frame BackgroundColor="White" CornerRadius="12" HasShadow="True" Padding="10" IsVisible="{Binding IsTypeFilterVisible}">
                 <Picker x:Name="typeFilterPicker"
-                        Title="📂 Фильтр по типу"
+                        Title="Фильтр по типу"
                         SelectedIndexChanged="OnTypeFilterChanged"
                         FontSize="16"
                         BackgroundColor="Transparent" />
@@ -76,8 +76,8 @@
                                 <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="20" TextColor="#333" />
                                 <Label Text="{Binding Manufacturer}" FontSize="14" TextColor="#555" />
                                 <Label Text="{Binding Type}" FontSize="13" TextColor="#888" />
-
-                                <Button Text="🛒 В корзину"
+                                <Label Text="{Binding Price, StringFormat='Цена: {0} ₸'}" FontSize="14" TextColor="#6B7280" />
+                                <Button Text="В корзину"
                                         Clicked="OnAddToCartClicked"
                                         BackgroundColor="#4CAF50"
                                         TextColor="White"

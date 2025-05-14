@@ -24,7 +24,8 @@
                         <VerticalStackLayout Spacing="8">
                             <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" TextColor="#374151" />
                             <Label Text="{Binding Type}" FontSize="14" TextColor="#6B7280" />
-                            <Label Text="{Binding Price, StringFormat='Цена: {0:C}'}" FontSize="14" TextColor="#6B7280" />
+                            <Label Text="{Binding Price, StringFormat='Цена: {0} ₸'}" FontSize="14" TextColor="#6B7280" />
+
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>

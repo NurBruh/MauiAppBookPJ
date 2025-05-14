@@ -62,6 +62,14 @@
                         <Label Text="{Binding GPU}" FontSize="20" TextColor="#1D1D1F" FontAttributes="Bold"/>
                     </VerticalStackLayout>
                 </Frame>
+
+                <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" Padding="15" CornerRadius="15"
+                        Shadow="{StaticResource CardShadow}">
+                    <VerticalStackLayout>
+                        <Label Text="Цена:" FontSize="18" TextColor="#3B3B3B"/>
+                        <Label Text="{Binding Price, StringFormat='{0} ₸'}" FontSize="20" TextColor="#1D1D1F" />
+                    </VerticalStackLayout>
+                </Frame>
             </VerticalStackLayout>
 
             <!-- Кнопка заказа -->

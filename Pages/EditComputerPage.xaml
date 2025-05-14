@@ -39,8 +39,8 @@
                 </Image>
             </HorizontalStackLayout>
 
-            <Button Text="💾 Сохранить" Clicked="OnSaveClicked" BackgroundColor="#4CAF50" TextColor="White" />
-            <Button Text="🗑 Удалить" Clicked="OnDeleteClicked" BackgroundColor="#F44336" TextColor="White" />
+            <Button Text="Сохранить" Clicked="OnSaveClicked" BackgroundColor="#4CAF50" TextColor="White" />
+            <Button Text="Удалить" Clicked="OnDeleteClicked" BackgroundColor="#F44336" TextColor="White" />
 
         </VerticalStackLayout>
     </ScrollView>
