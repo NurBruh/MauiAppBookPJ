@@ -49,7 +49,7 @@
             </CarouselView>
 
             <!-- Кнопка добавления -->
-            <Button Text="➕ Добавить ПК"
+            <Button Text="Добавить ПК"
                     x:Name="addPcButton"
                     Clicked="OnAddPcClicked"
                     BackgroundColor="#1976D2"
